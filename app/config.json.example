@@ -1,0 +1,10 @@
+{
+  "app": {
+    "port": 8080
+  },
+  "marvel": {
+    "baseEndpoint": "https://gateway.marvel.com",
+    "privateKey": "",
+    "publicKey": ""
+  }
+}
