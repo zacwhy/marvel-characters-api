@@ -5,6 +5,7 @@
   "marvel": {
     "baseEndpoint": "https://gateway.marvel.com",
     "privateKey": "",
-    "publicKey": ""
+    "publicKey": "",
+    "maxLimit": 100
   }
 }
