@@ -8,12 +8,17 @@ export default function (characterService) {
 
   router.get('/characters', async (ctx) => {
     const charactersMap = await characterService.all()
-    ctx.body = Object.keys(charactersMap)
+    ctx.body = Object.keys(charactersMap).map(id => parseInt(id))
   })
 
   router.get('/characters/:id', async (ctx) => {
     const id = ctx.params.id
     const character = await characterService.find(id)
+
+    if (!character) {
+      return ctx.status = 404
+    }
+
     ctx.body = {
       Id: id,
       Name: character.name,

@@ -20,14 +20,7 @@ export default class Marvel {
 
   async send(path, params) {
     const url = this.buildUrl(path, params)
-    const response = await fetch(url)
-
-    if (!response.ok) {
-      const message = await response.text()
-      throw new Error(message)
-    }
-
-    return await response.json()
+    return await fetch(url)
   }
 
   buildUrl(path, params) {

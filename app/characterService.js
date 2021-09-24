@@ -17,7 +17,19 @@ export default class CharacterService {
       return localCharacter
     }
 
-    const json = await this.marvel.getCharacter(id)
+    const response = await this.marvel.getCharacter(id)
+
+    if (response.status === 404) {
+      return undefined
+    }
+
+    if (!response.ok) {
+      console.error(response)
+      console.error(await response.text())
+      throw new Error('response not ok')
+    }
+
+    const json = await response.json()
 
     if (json.data.results.length === 0) {
       return undefined
@@ -105,7 +117,15 @@ export default class CharacterService {
       console.log('Retrieving characters modified since %s ...', params.modifiedSince)
     }
 
-    const json = await this.marvel.getCharacters(params)
+    const response = await this.marvel.getCharacters(params)
+
+    if (!response.ok) {
+      console.error(response)
+      console.error(await response.text())
+      throw new Error('response not ok')
+    }
+
+    const json = await response.json()
 
     const now = new Date()
 
