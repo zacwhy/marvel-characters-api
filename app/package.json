@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "koa": "^2.13.3",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.1.1",
     "node-fetch": "^3.0.0"
   },
   "devDependencies": {
