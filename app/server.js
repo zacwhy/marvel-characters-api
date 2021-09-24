@@ -11,6 +11,21 @@ const marvel = new Marvel({
   publicKey: config.marvel.publicKey,
 })
 
+/*
+ * The JsonCharacterRepository is the JSON file implementation for the
+ * CharacterRepository interface.
+ *
+ * It is a simple implementation, but may not be very efficient because all
+ * records are read and written to a .json file.
+ *
+ * More efficient methods may be implemented as long as it implements the
+ * interface methods:
+ *   - all()
+ *   - find(id)
+ *   - maxModified()
+ *   - insertOrUpdate(id, value)
+ *   - save()
+ */
 const characterRepository = new JsonCharacterRepository('db.json')
 
 const maxLimit = config.marvel.maxLimit
