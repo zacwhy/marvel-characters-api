@@ -1,0 +1,53 @@
+swagger: "2.0"
+info:
+  title: "Marvel Characters API"
+  description: "This is Marvel Characters API."
+  version: "1.0.0"
+
+host: "localhost:8080"
+schemes:
+  - "http"
+
+paths:
+  /characters:
+    get:
+      summary: "Returns the IDs of all Marvel characters"
+      responses:
+        '200':
+          description: "A list of character IDs."
+          schema:
+            type: array
+            items:
+              type: integer
+            example: [1011334, 1017100, 1009144, 1010699, 1009146, 1016823, 1009148]
+
+  /characters/{characterId}:
+    get:
+      summary: "Returns a character by ID"
+      parameters:
+        - name: characterId
+          in: path
+          required: true
+          description: "Character ID"
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: "A character object"
+          schema:
+            type: object
+            properties:
+              Id:
+                type: integer
+                format: int64
+                example: 1011127
+              Name:
+                type: string
+                example: "Zodiak"
+              Description:
+                type: string
+                example: "Twelve demons merged with Norman Harrison, who, soon after, adopted the guise of Zodiac and used his abilities to harness powers based on the astrological Zodiac."
+        '404':
+          description: "A character with the specified ID was not found."

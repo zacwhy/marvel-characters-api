@@ -1,8 +1,12 @@
 import Koa from 'koa'
 import logger from 'koa-logger'
 import Router from 'koa-router'
+import swagger from 'swagger2'
+import swaggerKoa from 'swagger2-koa'
 
 export default function (characterService) {
+  const swaggerDocument = swagger.loadDocumentSync('api.yaml')
+
   const app = new Koa()
   const router = new Router()
 
@@ -20,14 +24,17 @@ export default function (characterService) {
     }
 
     ctx.body = {
-      Id: id,
+      Id: parseInt(id),
       Name: character.name,
       Description: character.description,
     }
   })
 
+  router.redirect('/', '/swagger')
+
   app
     .use(logger())
+    .use(swaggerKoa.ui(swaggerDocument, '/swagger'))
     .use(router.routes())
     .use(router.allowedMethods())
 

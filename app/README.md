@@ -23,6 +23,15 @@ $ npm start
 
 ## Usage
 
+### Swagger UI
+
+![Swagger](images/swagger.png "Swagger")
+
+![GET /characters](images/swagger_characters.png "GET /characters")
+
+![GET /characters/{characterId}](images/swagger_character.png "GET /characters/{characterId}")
+
+
 Examples:
 
 ```sh
@@ -39,16 +48,16 @@ Keep-Alive: timeout=5
 ```
 
 ```sh
-$ curl -i http://localhost:8080/characters/1017856
+$ curl -i http://localhost:8080/characters/1011127
 
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-Content-Length: 75
+Content-Length: 209
 Date: Fri, 24 Sep 2021 16:51:26 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
-{"Id":"1017856","Name":"Captain Britain (Betsy Braddock)","Description":""}
+{"Id":1011127,"Name":"Zodiak","Description":"Twelve demons merged with Norman Harrison, who, soon after, adopted the guise of Zodiac and used his abilities to harness powers based on the astrological Zodiac."}
 ```
 
 ```sh
@@ -75,10 +84,7 @@ $ npm test
 
 ## References
 
-Setting up Jest with ESM
-https://gist.github.com/rstacruz/511f43265de4939f6ca729a3df7b001c
-
-Mocking a Database in Node with Jest
-https://www.youtube.com/watch?v=IDjF6-s1hGk&t=473s
-
-https://github.com/typicode/lowdb
+* [Setting up Jest with ESM](https://gist.github.com/rstacruz/511f43265de4939f6ca729a3df7b001c)
+* [Mocking a Database in Node with Jest](https://www.youtube.com/watch?v=IDjF6-s1hGk&t=473s)
+* [lowdb](https://github.com/typicode/lowdb)
+* [Setting up Swagger with a Koa API](https://ljn.io/posts/swagger-for-a-koa-api)
