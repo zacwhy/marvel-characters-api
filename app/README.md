@@ -85,6 +85,7 @@ $ npm test
 ## References
 
 * [Setting up Jest with ESM](https://gist.github.com/rstacruz/511f43265de4939f6ca729a3df7b001c)
+* [Testing Koa Server with Jest](https://medium.com/scrum-ai/4-testing-koa-server-with-jest-week-5-8e980cd30527)
 * [Mocking a Database in Node with Jest](https://www.youtube.com/watch?v=IDjF6-s1hGk&t=473s)
 * [lowdb](https://github.com/typicode/lowdb)
 * [Setting up Swagger with a Koa API](https://ljn.io/posts/swagger-for-a-koa-api)
