@@ -15,7 +15,9 @@
     "koa": "^2.13.3",
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
-    "node-fetch": "^3.0.0"
+    "node-fetch": "^3.0.0",
+    "swagger2": "^3.0.0",
+    "swagger2-koa": "^3.0.0"
   },
   "devDependencies": {
     "jest": "^27.2.1"
