@@ -1,18 +1,17 @@
-import { jest } from '@jest/globals'
 import request from 'supertest'
 
 import makeApp from './app'
 
 const mockCharacterService = (() => {
   return {
-    all: async () => {
+    async all() {
       return {
         '1011334': {},
         '1017100': {},
         '1009144': {},
       }
     },
-    find: async (id) => {
+    async find(id) {
       if (id === '1011127') {
         return {
           name: 'Zodiak',
@@ -42,9 +41,11 @@ test('get information of one character', async () => {
   const app = makeApp(mockCharacterService)
   const response = await request(app.callback()).get('/characters/1011127')
   expect(response.status).toBe(200)
-  expect(response.body.Id).toBe(1011127)
-  expect(response.body.Name).toBe('Zodiak')
-  expect(response.body.Description).toBe('Twelve demons merged with Norman Harrison, who, soon after, adopted the guise of Zodiac and used his abilities to harness powers based on the astrological Zodiac.')
+  expect(response.body).toStrictEqual({
+    Id: 1011127,
+    Name: 'Zodiak',
+    Description: 'Twelve demons merged with Norman Harrison, who, soon after, adopted the guise of Zodiac and used his abilities to harness powers based on the astrological Zodiac.',
+  })
 })
 
 test('return Not Found if no character found for id', async () => {
