@@ -10,7 +10,25 @@ export default class Marvel {
 
   async getCharacter(id) {
     const path = '/v1/public/characters/' + id
-    return this.send(path, {})
+
+    const response = await this.send(path, {})
+
+    if (response.status === 404) {
+      return null
+    }
+
+    if (!response.ok) {
+      // console.error(await response.text())
+      throw new Error('response not ok')
+    }
+
+    const json = await response.json()
+
+    if (json.data.results.length === 0) {
+      return null
+    }
+
+    return json.data.results[0]
   }
 
   async getCharacters(params) {

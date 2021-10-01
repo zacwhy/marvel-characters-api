@@ -13,30 +13,17 @@ export default class CharacterService {
   async find(id) {
     const localCharacter = this.characterRepository.find(id)
 
-    if (localCharacter !== undefined) {
+    if (localCharacter) {
       return localCharacter
     }
 
-    const response = await this.marvel.getCharacter(id)
+    const remoteCharacter = await this.marvel.getCharacter(id)
 
-    if (response.status === 404) {
-      return undefined
-    }
-
-    if (!response.ok) {
-      console.error(response)
-      console.error(await response.text())
-      throw new Error('response not ok')
-    }
-
-    const json = await response.json()
-
-    if (json.data.results.length === 0) {
-      return undefined
+    if (!remoteCharacter) {
+      return null
     }
 
     const now = new Date()
-    const remoteCharacter = json.data.results[0]
 
     const value = {
       name: remoteCharacter.name,
@@ -44,7 +31,7 @@ export default class CharacterService {
       modified: remoteCharacter.modified,
       fetched: now,
     }
-    console.log('update or insert', id, value)
+
     this.characterRepository.insertOrUpdate(id, value)
     this.characterRepository.save()
 
