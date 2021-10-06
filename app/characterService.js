@@ -76,7 +76,7 @@ export default class CharacterService {
    */
   async syncWithRemote() {
     const maxModified = this.characterRepository.maxModified()
-    console.log('maxModified', maxModified)
+    // console.log('maxModified', maxModified)
 
     await this.fetchFromRemote(maxModified, this.maxLimit)
   }
@@ -101,7 +101,7 @@ export default class CharacterService {
       // date format YYYY-MM-DD
       params.modifiedSince = d.toISOString().split('T')[0]
 
-      console.log('Retrieving characters modified since %s ...', params.modifiedSince)
+      // console.log('Retrieving characters modified since %s ...', params.modifiedSince)
     }
 
     const response = await this.marvel.getCharacters(params)
@@ -138,15 +138,15 @@ export default class CharacterService {
         modified: character.modified,
         fetched: now,
       }
-      console.log('update or insert', id, value)
+      // console.log('update or insert', id, value)
       this.characterRepository.insertOrUpdate(id, value)
     })
 
     this.characterRepository.save()
 
-    console.log('offset', json.data.offset)
-    console.log('count', json.data.count)
-    console.log('total', json.data.total)
+    // console.log('offset', json.data.offset)
+    // console.log('count', json.data.count)
+    // console.log('total', json.data.total)
 
     // if count (e.g. 100) is equal to limit (e.g. 100)
     // then may have more records to fetch
